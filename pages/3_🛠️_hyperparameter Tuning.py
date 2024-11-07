@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 
 import numpy as np
-import scikitplot as skplt
+#import scikitplot as skplt
 from joblib import dump, load
 import matplotlib.pyplot as plt
 from helper_functions import *  

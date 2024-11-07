@@ -47,7 +47,7 @@ st.markdown("   ")
 #)
 
 # Define radio button options
-model_options = ('RandomForest', 'XGBoost', 'Logistic Regression', 'LSTM')
+model_options = ('XGBoost', 'Logistic Regression', 'LSTM')
 
 # Create a horizontal layout container
 col1, col2 = st.columns(2)
@@ -60,7 +60,7 @@ choose_model = col2.radio("", options=model_options, horizontal=True)
 #########################################################################################
 
 # Load your trained models
-RF_model = joblib.load('Random_Forest_model.pkl')
+#RF_model = joblib.load('Random_Forest_model.pkl')
 #st.title(RF_model)
 XG_model = joblib.load('XGBoost_model.pkl')
 logistic_model = joblib.load('Logistic_Regression_model.pkl')
@@ -141,9 +141,9 @@ if st.button("Analyze Sentiment"):
         X_test_tfidf = tfidf_vectorizer.transform([user_input])
         #user_input=vectorizer.transform([user_input])
         # Make the prediction and choose model
-        if choose_model == 'RandomForest':
-            prediction = RF_model.predict(X_test_tfidf)
-        elif choose_model == 'XGBoost':
+       # if choose_model == 'RandomForest':
+        #    prediction = RF_model.predict(X_test_tfidf)
+        if choose_model == 'XGBoost':
             prediction = XG_model.predict(X_test_tfidf)
         elif choose_model == 'Logistic Regression':
             prediction = logistic_model.predict(X_test_tfidf)
