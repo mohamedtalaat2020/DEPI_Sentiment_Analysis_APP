@@ -430,48 +430,64 @@ if filename is not None:
         #st.plotly_chart(fig_hist_len)
 ###########################Pie Chart ###############################################
 if filename is not None:
-
     # Calculate counts for sentiments
     if topic == 'All Reviews' and selected_rating == 3:
         # Get counts for all sentiments
         positive_count = df[df['rating'] == 1].shape[0]
         negative_count = df[df['rating'] == 0].shape[0]
-        
+
+        # Create a DataFrame for plotting
+        sentiment_data = pd.DataFrame({
+            'Sentiment': ['Positive', 'Negative'],
+            'Count': [positive_count, negative_count]
+        })
+
         # Create a pie chart for all reviews
         fig_pie = px.pie(
-            values=[positive_count, negative_count],
+            sentiment_data,
+            names='Sentiment',
+            values='Count',
             title="Distribution of Sentiments",
-            names=['Positive', 'Negative'],
-            hover_name=['Positive', 'Negative'],
             opacity=0.9,
             template="plotly_white"
         )
 
         # Update layout dimensions for better visibility
-        fig_pie.update_layout(width=700,
-            height=500,  margin=dict(l=4, r=4, t=8, b=4))  # Adjust margins for better spacing)
+        fig_pie.update_layout(
+            width=700,
+            height=500, 
+            margin=dict(l=4, r=4, t=8, b=4)  # Adjust margins for better spacing
+        )
+
         # Add annotations for better readability
         fig_pie.update_traces(
-        textinfo='percent+label',  # Show percentage and label on slices
-        pull=[0.09, 0.09, 0.09]  # Slightly pull out slices for emphasis
+            textinfo='percent+label',  # Show percentage and label on slices
+            pull=[0.09, 0.09]  # Slightly pull out slices for emphasis
         )
+
         # Display the pie chart
-        #st.plotly_chart(fig_pie)
+        # st.plotly_chart(fig_pie)
 
     elif topic not in ['All Reviews'] and selected_rating in [0, 1]:
         # Filter the DataFrame for the selected rating only
-        #filtered_df = df[df['rating'] == selected_rating]
-        
-        # Calculate counts for the selected sentiment
+        filtered_df = df[df['rating'] == selected_rating]
+
+        # Get counts for the selected sentiment
         positive_count = filtered_df[filtered_df['rating'] == 1].shape[0]
         negative_count = filtered_df[filtered_df['rating'] == 0].shape[0]
-        
+
+        # Create a DataFrame for plotting
+        sentiment_data = pd.DataFrame({
+            'Sentiment': ['Positive', 'Negative'],
+            'Count': [positive_count, negative_count]
+        })
+
         # Create a pie chart for the selected review type
         fig_pie = px.pie(
-            values=[positive_count, negative_count],
+            sentiment_data,
+            names='Sentiment',
+            values='Count',
             title=f"Distribution of Sentiments for {topic}",
-            names=['Positive', 'Negative'],
-            hover_name=['Positive', 'Negative'],
             opacity=0.9,
             template="plotly_white"
         )
@@ -480,7 +496,7 @@ if filename is not None:
         fig_pie.update_layout(width=600, height=450)
 
         # Display the pie chart
-        #st.plotly_chart(fig_pie)
+        # st.plotly_chart(fig_pie)
 ########################Box Plot##################################### 
 if filename is not None:
 
