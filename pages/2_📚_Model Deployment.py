@@ -62,7 +62,7 @@ choose_model = col2.radio("", options=model_options, horizontal=True)
 # Load your trained models
 #RF_model = joblib.load('Random_Forest_model.pkl')
 #st.title(RF_model)
-XG_model = joblib.load('XGBoost_model.pkl')
+#XG_model = joblib.load('XGBoost_model.pkl')
 logistic_model = joblib.load('Logistic_Regression_model.pkl')
 lstm_model = tf.keras.models.load_model('lstm_model.h5')
 tokenizer = joblib.load('lstm_tokenizer.pkl')
@@ -143,9 +143,9 @@ if st.button("Analyze Sentiment"):
         # Make the prediction and choose model
        # if choose_model == 'RandomForest':
         #    prediction = RF_model.predict(X_test_tfidf)
-        if choose_model == 'XGBoost':
-            prediction = XG_model.predict(X_test_tfidf)
-        elif choose_model == 'Logistic Regression':
+       # if choose_model == 'XGBoost':
+        #    prediction = XG_model.predict(X_test_tfidf)
+        if choose_model == 'Logistic Regression':
             prediction = logistic_model.predict(X_test_tfidf)
         elif choose_model == 'LSTM':
             # Tokenize and pad the sequence for LSTM (assuming LSTM expects padded sequences)
