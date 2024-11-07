@@ -4,9 +4,10 @@ nltk
 numpy
 pandas
 plotly
-scikit_learn
+scikit-learn
 streamlit
 tensorflow
 torch
 transformers
 wordcloud
+seaborn
