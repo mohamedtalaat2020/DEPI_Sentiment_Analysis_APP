@@ -441,8 +441,8 @@ if filename is not None:
         fig_pie = px.pie(
             values=[positive_count, negative_count],
             title="Distribution of Sentiments",
-            names=['Positive', 'Negative', 'Neutral'],
-            hover_name=['Positive', 'Negative', 'Neutral'],
+            names=['Positive', 'Negative'],
+            hover_name=['Positive', 'Negative'],
             opacity=0.9,
             template="plotly_white"
         )
