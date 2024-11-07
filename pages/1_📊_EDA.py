@@ -93,7 +93,8 @@ if filename is not None:
     df = df[['rating', 'clean_text', 'Date']]
     df['Date'] = pd.to_datetime(df['Date'])
     df['quarter'] = pd.PeriodIndex(df.Date, freq='Q')
-
+    df['month'] = df['Date'].dt.month
+    df['day'] = df['Date'].dt.day
     # Display some information in the sidebar
     st.sidebar.write(df['quarter'][0])
     st.sidebar.write(df['Date'][0])
@@ -146,7 +147,7 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
     # Pivot the table to have ratings as columns, quarters as rows
     quarterly_counts_pivot = quarterly_counts.pivot(index='quarter', columns='rating', values='count').fillna(0)
     # Rename the columns for easier interpretation
-    quarterly_counts_pivot.columns = ['Negative', 'Neutral', 'Positive']
+    quarterly_counts_pivot.columns = ['Negative', 'Positive']
     # Display the chart
     st.markdown("<h2 style='color:white;'>Total Number of Reviews of Ratings per quarter</h2>", unsafe_allow_html=True)
     st.line_chart(quarterly_counts_pivot)
@@ -156,14 +157,13 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
 st.markdown("<h2 style='color: white; text-align: center;'>Reviews Metrics</h2>", unsafe_allow_html=True)
 
 # Create columns for metrics
-kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+kpi1, kpi2, kpi3= st.columns(3)
 
 if filename is not None:
     # Total metrics
     total_reviews = len(df)
-    total_positive_reviews = len(df[df["rating"] == 2])
+    total_positive_reviews = len(df[df["rating"] == 1])
     total_negative_reviews = len(df[df["rating"] == 0])
-    total_neutral_reviews = len(df[df["rating"] == 1])
 
     # Display metrics in the columns
     # Display metrics in the columns
@@ -197,15 +197,7 @@ if filename is not None:
             unsafe_allow_html=True
         )
 
-    with kpi4:
-        st.markdown(
-            "<div style='background-color: rgba(255, 255, 255, 0.9); "
-            "padding: 0px; border-radius: 0px; "
-            "box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8); text-align: center;'>"
-            "<h3 style='color: black; font-size: 20px; margin: 0;'>Total Neutral Reviews</h3>"
-            "<h2 style='color: black; font-size: 30px; margin: 10px 0;'>{}</h2></div>".format(total_neutral_reviews), 
-            unsafe_allow_html=True
-        )
+  
 
 
 ## filteration method #############
@@ -218,15 +210,14 @@ if filename is not None:
 
 # Map each review type to its corresponding rating value
 rating_map = {
-    'Positive Reviews': 2,
-    'Neutral Reviews': 1,
+    'Positive Reviews': 1,
     'Negative Reviews': 0,
     'All Reviews' : 3
 }
 
 
 # Streamlit selectbox
-topic = st.selectbox('Select review type:', ['All Reviews','Positive Reviews', 'Neutral Reviews', 'Negative Reviews'])
+topic = st.selectbox('Select review type:', ['All Reviews','Positive Reviews', 'Negative Reviews'])
 
 if filename is not None:
     # Filter the data based on selected review type
@@ -249,8 +240,6 @@ if filename is not None:
     # Create word cloud based on selected rating
     def create_wordcloud(topic_rating):
         if   topic_rating == 'Positive Reviews':
-            reviews_text = get_reviews_by_rating(df, 2.0)
-        elif topic_rating == 'Neutral Reviews':
             reviews_text = get_reviews_by_rating(df, 1.0)
         elif topic_rating == 'Negative Reviews':
             reviews_text = get_reviews_by_rating(df, 0.0)
@@ -277,12 +266,6 @@ if filename is not None:
         ax.set_title("Positive Reviews",fontsize=16)
         ax.axis("off")
 
-        wordcloud_neu = create_wordcloud('Neutral Reviews')
-        # Display the word cloud
-        wordcloud_fig_neu, ax = plt.subplots(figsize=(12, 8))
-        ax.imshow(wordcloud_neu, interpolation='bicubic')
-        ax.set_title("Neutral Reviews",fontsize=16)
-        ax.axis("off")
 
         wordcloud_neg = create_wordcloud('Negative Reviews')
         # Display the word cloud
@@ -308,8 +291,8 @@ if filename is not None:
     if topic in ['All Reviews'] and selected_rating ==3:
         st.write(f"All Data", df)
         fig_dist = ff.create_distplot(
-            [df[df['rating'] == 2]['word_count'], df[df['rating'] == 1]['word_count'],df[df['rating'] == 0]['word_count'],df['word_count']],
-            ['Positive','Neutral', 'Negative',topic],
+            [['word_count'], df[df['rating'] == 1]['word_count'],df[df['rating'] == 0]['word_count'],df['word_count']],
+            ['Positive', 'Negative',topic],
             bin_size=10,
             show_hist=False,
             show_rug=False
@@ -364,7 +347,7 @@ if filename is not None:
             df, 
             x='word_count', 
             color='rating', 
-            category_orders={'rating': ['Positive','Neutral', 'Negative']},
+            category_orders={'rating': ['Positive', 'Negative']},
             labels={'rating': 'Review Type', 'word_count': 'Number of Words'},
             title='Distribution of Words in All Reviews',
             nbins=15,  # Adjust bins if needed
@@ -408,7 +391,7 @@ if filename is not None:
             df,
             x='char_count',
             color='rating',
-            category_orders={'rating': [2, 1, 0]},  #    Assuming 2 for Positive, 1 for Neutral, 0 for Negative
+            category_orders={'rating': [1, 0]},  #    Assuming 2 for Positive, 1 for Neutral, 0 for Negative
             nbins=25,  # Number of bins
             title='Distribution of Review Lengths',
             labels={'char_count': 'Review Length'},
@@ -425,7 +408,7 @@ if filename is not None:
         # Display the histogram in Streamlit
         #st.plotly_chart(fig_hist_len)
 
-    elif topic not in ['All Reviews'] and selected_rating in [0, 1, 2]:
+    elif topic not in ['All Reviews'] and selected_rating in [0, 1]:
 
         # Create a histogram with a kernel density estimate (KDE) for the selected review type
         fig_hist_len = px.histogram(
@@ -451,13 +434,12 @@ if filename is not None:
     # Calculate counts for sentiments
     if topic == 'All Reviews' and selected_rating == 3:
         # Get counts for all sentiments
-        positive_count = df[df['rating'] == 2].shape[0]
-        neutral_count = df[df['rating'] == 1].shape[0]
+        positive_count = df[df['rating'] == 1].shape[0]
         negative_count = df[df['rating'] == 0].shape[0]
         
         # Create a pie chart for all reviews
         fig_pie = px.pie(
-            values=[positive_count, negative_count, neutral_count],
+            values=[positive_count, negative_count],
             title="Distribution of Sentiments",
             names=['Positive', 'Negative', 'Neutral'],
             hover_name=['Positive', 'Negative', 'Neutral'],
@@ -476,21 +458,20 @@ if filename is not None:
         # Display the pie chart
         #st.plotly_chart(fig_pie)
 
-    elif topic not in ['All Reviews'] and selected_rating in [0, 1, 2]:
+    elif topic not in ['All Reviews'] and selected_rating in [0, 1]:
         # Filter the DataFrame for the selected rating only
         #filtered_df = df[df['rating'] == selected_rating]
         
         # Calculate counts for the selected sentiment
-        positive_count = filtered_df[filtered_df['rating'] == 2].shape[0]
-        neutral_count = filtered_df[filtered_df['rating'] == 1].shape[0]
+        positive_count = filtered_df[filtered_df['rating'] == 1].shape[0]
         negative_count = filtered_df[filtered_df['rating'] == 0].shape[0]
         
         # Create a pie chart for the selected review type
         fig_pie = px.pie(
-            values=[positive_count, negative_count, neutral_count],
+            values=[positive_count, negative_count],
             title=f"Distribution of Sentiments for {topic}",
-            names=['Positive', 'Negative', 'Neutral'],
-            hover_name=['Positive', 'Negative', 'Neutral'],
+            names=['Positive', 'Negative'],
+            hover_name=['Positive', 'Negative'],
             opacity=0.9,
             template="plotly_white"
         )
@@ -533,8 +514,7 @@ if filename is not None:
         #st.write("Average review length by sentiment:")
         #st.dataframe(avg_length)
         # Calculate average review length
-        avg_length_positive = df[df['rating'] == 2]['char_count'].mean()
-        avg_length_neutral = df[df['rating'] == 1]['char_count'].mean()
+        avg_length_positive = df[df['rating'] == 1]['char_count'].mean()
         avg_length_negative = df[df['rating'] == 0]['char_count'].mean()
 
         # Display average review lengths without DataFrame
@@ -542,7 +522,7 @@ if filename is not None:
         st.markdown("<h2 style='color: white; text-align: center;'>Average Review Lengths</h2>", unsafe_allow_html=True)
 
         # Create columns for metrics
-        length_kpi1, length_kpi2, length_kpi3 = st.columns(3)
+        length_kpi1,  length_kpi3 = st.columns(2)
 
         # Display average review lengths with the new styling
         with length_kpi1:
@@ -555,15 +535,7 @@ if filename is not None:
                 unsafe_allow_html=True
             )
 
-        with length_kpi2:
-            st.markdown(
-                "<div style='text-align: center; background-color: rgba(255, 255, 255, 0.9); "
-                "padding: 0px; border-radius: 0px; "
-                "box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8); text-align: center;'>"
-                "<h3 style='color: black; font-size: 20px; margin: 0;'>Neutral Reviews</h3>"
-                "<h2 style='color: black; font-size: 30px; margin: 10px 0;'>{:.2f} characters</h2></div>".format(avg_length_neutral), 
-                unsafe_allow_html=True
-            )
+  
 
         with length_kpi3:
             st.markdown(
@@ -576,7 +548,7 @@ if filename is not None:
             )
 
 
-    elif topic not in ['All Reviews'] and selected_rating in [0, 1, 2]:
+    elif topic not in ['All Reviews'] and selected_rating in [0, 1]:
         # Create a box plot for the filtered data
         fig_box = px.box(
             filtered_df,
@@ -711,7 +683,6 @@ if filename is not None:
         container0 = st.container()
         col1, col2 = st.columns(2)
         container00 = st.container()
-        col1, col2 = st.columns(2)
         with container0:
             with col1:
                 st.pyplot(wordcloud_fig_all)
@@ -720,9 +691,6 @@ if filename is not None:
 
 
         with container00:
-            with col1:
-                st.pyplot(wordcloud_fig_neu)
-            with col2:
                 st.pyplot(wordcloud_fig_neg)
 
     elif topic not in ['All Reviews'] and selected_rating in [0,1,2] :   
