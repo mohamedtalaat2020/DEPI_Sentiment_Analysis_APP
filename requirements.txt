@@ -6,6 +6,7 @@ numpy
 pandas
 plotly
 scikit-learn
+scikitplot
 tensorflow
 torch
 transformers
