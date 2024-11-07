@@ -436,13 +436,12 @@ if filename is not None:
         # Get counts for all sentiments
         positive_count = df[df['rating'] == 1].shape[0]
         negative_count = df[df['rating'] == 0].shape[0]
-        
+
         # Create a pie chart for all reviews
         fig_pie = px.pie(
             values=[positive_count, negative_count],
+            names=[1, 0],
             title="Distribution of Sentiments",
-            names=['Positive', 'Negative'],
-            hover_name=['Positive', 'Negative'],
             opacity=0.9,
             template="plotly_white"
         )
