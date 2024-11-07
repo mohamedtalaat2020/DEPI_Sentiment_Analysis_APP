@@ -47,7 +47,7 @@ st.markdown("   ")
 #)
 
 # Define radio button options
-model_options = ('XGBoost', 'Logistic Regression', 'LSTM')
+model_options = ( 'Logistic Regression', 'LSTM')
 
 # Create a horizontal layout container
 col1, col2 = st.columns(2)

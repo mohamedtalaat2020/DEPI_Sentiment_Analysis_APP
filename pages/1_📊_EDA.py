@@ -1,12 +1,8 @@
 import streamlit as st
-
 import pandas as pd
 import numpy as np
-
 import matplotlib.pyplot as plt
-
 from sklearn import datasets
-import streamlit as st
 from wordcloud import WordCloud ,STOPWORDS , ImageColorGenerator
 import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
@@ -81,7 +77,7 @@ st.markdown("   ")
 st.sidebar.header("Data Preparation")
 st.sidebar.markdown("""
 * **Data Preprocessing:** Ensure your data is clean and preprocessed.
-* **Sentiment Column [Sentiment] :** Include a column indicating the sentiment (0 and 1).
+* **Sentiment Column [rating] :** Include a column indicating the sentiment (0 and 1).
 * **Clean Text Column [clean_text] :** Include a column containing the cleaned text.
 """)
 filename = st.sidebar.file_uploader("Upload Reviews Data (CSV or XLSX)", type=["csv", "xlsx"])
