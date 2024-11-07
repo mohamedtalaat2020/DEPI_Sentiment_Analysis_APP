@@ -291,7 +291,7 @@ if filename is not None:
     if topic in ['All Reviews'] and selected_rating ==3:
         st.write(f"All Data", df)
         fig_dist = ff.create_distplot(
-            [['word_count'], df[df['rating'] == 1]['word_count'],df[df['rating'] == 0]['word_count'],df['word_count']],
+           [df[df['rating'] == 1]['word_count'], df[df['rating'] == 0]['word_count'], df['word_count']],
             ['Positive', 'Negative',topic],
             bin_size=10,
             show_hist=False,
