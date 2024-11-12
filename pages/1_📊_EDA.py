@@ -122,7 +122,7 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
     #st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
     # Group by quarter and calculate average rating
     # Daily Total Reviews
-    daily_counts = df.groupby('Date').size().reset_index(name='total_reviews')
+    daily_counts = df.groupby(['day']).size().reset_index(name='total_reviews')
     st.line_chart(daily_counts.set_index('Date'))
 
     # Daily Average Rating
