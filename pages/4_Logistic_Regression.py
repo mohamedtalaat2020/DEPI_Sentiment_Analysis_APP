@@ -39,9 +39,17 @@ if 'uploaded_data' in st.session_state:
 else:
     df = ''
 
-# Define the training function for Logistic Regression
-def train_model(C, max_iter):
-    log_reg = LogisticRegression(C=C, max_iter=max_iter, random_state=123)
+# Define the training function for Logistic Regression with additional parameters
+def train_model(C, max_iter, solver, penalty, class_weight, tol):
+    log_reg = LogisticRegression(
+        C=C,
+        max_iter=max_iter,
+        solver=solver,
+        penalty=penalty,
+        class_weight=class_weight,
+        tol=tol,
+        random_state=123
+    )
     log_reg.fit(X_train_vec, Y_train)
     return log_reg
 
@@ -55,12 +63,20 @@ with st.form("train_model"):
     with col1:
         C = st.slider("Inverse of Regularization Strength (C):", min_value=0.01, max_value=10.0, step=0.1)
         max_iter = st.slider("Max Iterations:", min_value=50, max_value=500, step=50)
+        tol = st.number_input("Tolerance (tol)", min_value=1e-5, max_value=1e-1, value=1e-4, format="%.5f")
+        
+        solver = st.selectbox("Solver", ["lbfgs", "liblinear", "saga"])
+        penalty = st.selectbox("Penalty", ["l2", "l1", "elasticnet", "none"])
+        
+        class_weight_option = st.selectbox("Class Weight", ["None", "balanced"])
+        class_weight = None if class_weight_option == "None" else "balanced"
+        
         save_model = st.checkbox("Save Model")
 
         submitted = st.form_submit_button("Train")
 
     if submitted and df is not None and not df.empty:
-        log_reg = train_model(C, max_iter)
+        log_reg = train_model(C, max_iter, solver, penalty, class_weight, tol)
 
         if save_model:
             dump(log_reg, "log_reg_model.dat")
