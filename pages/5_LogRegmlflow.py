@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 mlflow.set_tracking_uri("https://dagshub.com/mohamedtalaat2020/DEPI_Sentiment_Analysis_APP.mlflow")  # This creates an 'mlruns' directory in the current working directory
 
 # Create or set the experiment
-mlflow.set_experiment("Logistic Regression Experiments")
+mlflow.set_experiment("Logistic_Regression_Experiments")
 
 import os
 os.environ['MLFLOW_TRACKING_USERNAME'] = 'mohamedtalaat2020' # 'learnpythonlanguage'
