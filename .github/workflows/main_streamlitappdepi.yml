@@ -67,7 +67,10 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_05F628EBA5BC46B5A38030F966A1AFF7 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_84EDFEBEFD634D828B8A4C155171732D }}
-          allow-no-subscriptions: true
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          
+      - name: Set Azure Subscription
+        run: az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}   
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -75,4 +78,5 @@ jobs:
         with:
           app-name: 'streamlitappdepi'
           slot-name: 'Production'
-          
+          package: 'release.zip'
+
