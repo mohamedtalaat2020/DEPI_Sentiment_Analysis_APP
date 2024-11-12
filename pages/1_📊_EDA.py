@@ -123,7 +123,7 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
     # Group by quarter and calculate average rating
     # Daily Total Reviews
     daily_counts = df.groupby('day').size().reset_index(name='total_reviews')
-    st.line_chart(daily_counts.set_index('Date'))
+    st.line_chart(daily_counts.set_index('day'))
 
     # Daily Average Rating
     daily_avg = df.groupby('Date')['rating'].mean().reset_index()
