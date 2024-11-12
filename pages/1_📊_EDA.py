@@ -122,16 +122,16 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
     #st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
     # Group by quarter and calculate average rating
     # Daily Total Reviews
-    daily_counts = df.groupby('date').size().reset_index(name='total_reviews')
-    st.line_chart(daily_counts.set_index('date'))
+    daily_counts = df.groupby('Date').size().reset_index(name='total_reviews')
+    st.line_chart(daily_counts.set_index('Date'))
 
     # Daily Average Rating
-    daily_avg = df.groupby('date')['rating'].mean().reset_index()
-    st.line_chart(daily_avg.set_index('date'))
+    daily_avg = df.groupby('Date')['rating'].mean().reset_index()
+    st.line_chart(daily_avg.set_index('Date'))
 
     # Daily Positive and Negative Reviews
-    daily_sentiment = df.groupby(['date', 'rating']).size().reset_index(name='count')
-    daily_sentiment_pivot = daily_sentiment.pivot(index='date', columns='rating', values='count').fillna(0)
+    daily_sentiment = df.groupby(['Date', 'rating']).size().reset_index(name='count')
+    daily_sentiment_pivot = daily_sentiment.pivot(index='Date', columns='rating', values='count').fillna(0)
     daily_sentiment_pivot.columns = ['Negative', 'Positive']
     st.line_chart(daily_sentiment_pivot)
 
