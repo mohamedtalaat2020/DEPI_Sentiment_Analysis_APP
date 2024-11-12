@@ -113,44 +113,27 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
 
     
 
-######
+    ######
 
 
-#st.markdown("<p style='color: white;'>Total Reviews are: {}</p>".format(len(df)), unsafe_allow_html=True)
-#st.markdown("<p style='color: white;'>Total Positive Reviews are: {}</p>".format(len(df[df["rating"] == 2])), unsafe_allow_html=True)
-#st.markdown("<p style='color: white;'>Total Negative Reviews are: {}</p>".format(len(df[df["rating"] == 0])), unsafe_allow_html=True)
-#st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
-# Group by quarter and calculate average rating
+    #st.markdown("<p style='color: white;'>Total Reviews are: {}</p>".format(len(df)), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Positive Reviews are: {}</p>".format(len(df[df["rating"] == 2])), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Negative Reviews are: {}</p>".format(len(df[df["rating"] == 0])), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
     # Group by quarter and calculate average rating
-    # Count the total number of reviews per quarter
-    quarterly_counts = df.groupby('quarter').size().reset_index(name='total_reviews')
-    # Convert quarter periods to formatted strings (e.g., Q1-2022)
-    quarterly_counts['quarter'] = quarterly_counts['quarter'].dt.strftime("Q%q-%Y")
-    # Add title for the chart
-    st.markdown("<h2 style='color:white;'>Total Number of Reviews per Quarter</h2>", unsafe_allow_html=True)
-    # Display the line chart of total reviews by quarter
-    st.line_chart(quarterly_counts.set_index('quarter'))
+    # Daily Total Reviews
+    daily_counts = df.groupby('date').size().reset_index(name='total_reviews')
+    st.line_chart(daily_counts.set_index('date'))
 
-    # Group by quarter and calculate average rating
-    quarterly_avg = df.groupby('quarter')['rating'].mean().reset_index()
-    # Convert quarter periods to formatted strings (e.g., Q1-2022)
-    quarterly_avg['quarter'] = quarterly_avg['quarter'].dt.strftime("Q%q-%Y")
-    # Display the line chart of average ratings by quarter
-    st.markdown("<h2 style='color:white;'>Average Ratings per Quarter - Trend Analysis </h2>", unsafe_allow_html=True)
-    st.line_chart(quarterly_avg.set_index('quarter'))
+    # Daily Average Rating
+    daily_avg = df.groupby('date')['rating'].mean().reset_index()
+    st.line_chart(daily_avg.set_index('date'))
 
-
-    # Group by quarter and rating, counting total number of reviews for each rating category per quarter
-    quarterly_counts = df.groupby(['quarter', 'rating']).size().reset_index(name='count')
-    # Convert quarter periods to formatted strings (e.g., Q1-2022)
-    quarterly_counts['quarter'] = quarterly_counts['quarter'].dt.strftime("Q%q-%Y")
-    # Pivot the table to have ratings as columns, quarters as rows
-    quarterly_counts_pivot = quarterly_counts.pivot(index='quarter', columns='rating', values='count').fillna(0)
-    # Rename the columns for easier interpretation
-    quarterly_counts_pivot.columns = ['Negative', 'Positive']
-    # Display the chart
-    st.markdown("<h2 style='color:white;'>Total Number of Reviews of Ratings per quarter</h2>", unsafe_allow_html=True)
-    st.line_chart(quarterly_counts_pivot)
+    # Daily Positive and Negative Reviews
+    daily_sentiment = df.groupby(['date', 'rating']).size().reset_index(name='count')
+    daily_sentiment_pivot = daily_sentiment.pivot(index='date', columns='rating', values='count').fillna(0)
+    daily_sentiment_pivot.columns = ['Negative', 'Positive']
+    st.line_chart(daily_sentiment_pivot)
 
 # Create a container div for the metrics
 # Development Metrics Section
