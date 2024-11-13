@@ -118,7 +118,22 @@ def clean_text(text):
 
 ########################################################################################################
 ###################################Batch Sentiment Analysis#####################################################        
-st.write("### Batch Sentiment Analysis Section")
+# Centered, styled header for "Batch Sentiment Analysis Section"
+batch_analysis_header = """
+    <div style="background-color: rgba(70, 130, 180, 0.3); 
+                padding: 15px; 
+                border-radius: 10px; 
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); 
+                text-align: center; 
+                margin-top: 20px; 
+                margin-bottom: 20px;">
+        <h2 style="color: #1e90ff; font-size: 30px; margin: 0; 
+                   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);">
+            Batch Sentiment Analysis Section
+        </h2>
+    </div>
+"""
+st.markdown(batch_analysis_header, unsafe_allow_html=True)
 # File upload for batch sentiment analysis
 st.write("                                                                                     ")
 uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis")
