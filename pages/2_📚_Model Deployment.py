@@ -153,7 +153,11 @@ if uploaded_file:
 
         # Add predictions to the DataFrame
         data['Sentiment'] = predictions 
-        
+        if data['Sentiment'] == 1 :
+            data['Sentiment']= "Positive"
+        elif data['Sentiment'] == 0 :
+            data['Sentiment']= "Negative"
+            
         st.write("### Sentiment Analysis Results:")
         st.write(data[['text','clean_text','Sentiment']])
 
