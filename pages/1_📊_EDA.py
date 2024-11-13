@@ -590,11 +590,11 @@ if filename is not None:
         #st.write(f"Average Review Length for {topic}:")
         #st.metric("Review Length", f"{avg_length:.2f} characters")
         # Display average review length without DataFrame
-        st.markdown(f"<h2 style='color: white; text-align: center;'>Average Review Length for {topic}</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='color: black; text-align: center;'>Average Review Length for {topic}</h2>", unsafe_allow_html=True)
 
         # Create a single column for the metric
         st.markdown(
-            f"<div style='text-align: center; background-color: black; padding: 20px; border-radius: 10px;'>"
+            f"<div style='text-align: center; background-color: white; padding: 20px; border-radius: 10px;'>"
             f"<h3 style='color: white;'>Review Length</h3>"
             f"<h2 style='color: white;'>{avg_length:.2f} characters</h2>"
             f"</div>",
