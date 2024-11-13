@@ -12,7 +12,7 @@ html_temp = """
                 text-align: center;">
         <h1 style="color: white; font-size: 40px; margin: 0; 
                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
-                   Comprehensive Data Science Toolkit
+                   Comprehensive ML & DL Toolkit
         </h1>
     </div>
 """
