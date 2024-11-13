@@ -593,13 +593,15 @@ if filename is not None:
         st.markdown(f"<h2 style='color: black; text-align: center;'>Average Review Length for {topic}</h2>", unsafe_allow_html=True)
 
         # Create a single column for the metric
+       # Create a single column for the metric
         st.markdown(
-            f"<div style='text-align: center; background-color: white; padding: 20px; border-radius: 10px;'>"
-            f"<h3 style='color: white;'>Review Length</h3>"
-            f"<h2 style='color: white;'>{avg_length:.2f} characters</h2>"
+            f"<div style='background-color: rgba(0, 0, 0, 0.7); padding: 30px; border-radius: 15px; box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8); text-align: center;'>"
+            f"<h3 style='color: white; font-size: 30px; margin: 0; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);'>Review Length</h3>"
+            f"<h2 style='color: white; font-size: 40px; margin: 0; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);'>{avg_length:.2f} characters</h2>"
             f"</div>",
             unsafe_allow_html=True
         )
+
 
  ##################### N- Gram #########################################
 
