@@ -306,7 +306,7 @@ if filename is not None:
 
         # Display the plot in Streamlit
         #st.plotly_chart(fig_dist)
-    elif topic not in ['All Reviews'] and selected_rating in [0,1,2] :
+    elif topic not in ['All Reviews'] and selected_rating in [0,1] :
         #filtered_df = df[df['rating'] == selected_rating]
         st.write(f"Data for {topic}:", filtered_df)        
         fig_dist = ff.create_distplot(
@@ -352,7 +352,7 @@ if filename is not None:
         fig_histogram.update_traces(opacity=0.6)
         #st.plotly_chart(fig_histogram)
 
-    elif topic not in ['All Reviews'] and selected_rating in [0,1,2] :
+    elif topic not in ['All Reviews'] and selected_rating in [0,1] :
         # Filter the DataFrame for the selected rating only
         #filtered_df = df[df['rating'] == selected_rating]
         #st.write(f"Data for {topic}:", filtered_df)
@@ -519,14 +519,9 @@ if filename is not None:
         #st.plotly_chart(fig_box)
 
         # Calculate and display average review length
-        #avg_length = df.groupby('rating')['char_count'].mean().reset_index()
-        #st.write("Average review length by sentiment:")
-        #st.dataframe(avg_length)
-        # Calculate average review length
         avg_length_positive = df[df['rating'] == 1]['char_count'].mean()
         avg_length_negative = df[df['rating'] == 0]['char_count'].mean()
 
-        # Display average review lengths without DataFrame
         # Display average review lengths without DataFrame
         st.markdown("<h2 style='color: white; text-align: center;'>Average Review Lengths</h2>", unsafe_allow_html=True)
 
@@ -594,10 +589,11 @@ if filename is not None:
 
         # Create a single column for the metric
         st.markdown(
-            f"<div style='text-align: center; background-color: black; padding: 20px; border-radius: 10px;'>"
-            f"<h3 style='color: black;'>Review Length</h3>"
-            f"<h2 style='color: black;'>{avg_length:.2f} characters</h2>"
-            f"</div>",
+            "<div style='background-color: rgba(255, 255, 255, 0.9); "
+            "padding: 0px; border-radius: 0px; "
+            "box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8); text-align: center;'>"
+            "<h3 style='color: black; font-size: 20px; margin: 0;'>Review Length</h3>"
+            "<h2 style='color: black; font-size: 30px; margin: 10px 0;'>{}</h2></div>".format(avg_length), 
             unsafe_allow_html=True
         )
 
