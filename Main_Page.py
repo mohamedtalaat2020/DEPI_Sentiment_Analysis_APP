@@ -23,7 +23,7 @@ st.markdown(html_temp, unsafe_allow_html=True)
 #st.title("Customer Product Reviews Sentiment Analysis App")
 # app design
 set_bg_hack('Picture1.png')
-st.title("## Team Members 🧑‍💻")
+st.write("## Team Members 🧑‍💻")
 
 st.markdown("""
 <style>
