@@ -127,10 +127,10 @@ batch_analysis_header = """
                 text-align: center; 
                 margin-top: 20px; 
                 margin-bottom: 20px;">
-        <h2 style="color: white; font-size: 30px; margin: 0; 
+        <h3 style="color: white; font-size: 30px; margin: 0; 
                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
             Batch Sentiment Analysis Section
-        </h2>
+        </h3>
     </div>
 """
 st.markdown(batch_analysis_header, unsafe_allow_html=True)
