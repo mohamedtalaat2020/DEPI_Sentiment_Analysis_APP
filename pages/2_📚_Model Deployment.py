@@ -136,16 +136,16 @@ if uploaded_file:
         
         # Make predictions 
         # Transform the text using the TF-IDF vectorizer
-        data['text'] = data['text'].astype(str).apply(lambda x: clean_text(x))
-        text_data_tfidf = tfidf_vectorizer.transform(data['text'])
+        data['clean_text'] = data['text'].astype(str).apply(lambda x: clean_text(x))
+        text_data_tfidf = tfidf_vectorizer.transform(data['clean_text'])
 
         # Predict sentiments for the text data
         
         if choose_model == 'Logistic Regression':
             predictions = logistic_model.predict(text_data_tfidf)
         elif choose_model == 'LSTM':
-            tokenizer.fit_on_texts(data['text'])  # Fit only for this example
-            sequence = tokenizer.texts_to_sequences(data['text'])
+            tokenizer.fit_on_texts(data['clean_text'])  # Fit only for this example
+            sequence = tokenizer.texts_to_sequences(data['clean_text'])
             padded_sequence = pad_sequences(sequence, maxlen=150)  # Assuming maxlen=100
 
             predictions = lstm_model.predict(padded_sequence)
@@ -155,11 +155,11 @@ if uploaded_file:
         data['Sentiment'] = predictions 
         
         st.write("### Sentiment Analysis Results:")
-        st.write(data[['text', 'Sentiment']])
+        st.write(data[['text','clean_text','Sentiment']])
 
         # Summary Section
-        positive_count = sum(data['Sentiment'] == "Positive")
-        negative_count = sum(data['Sentiment'] == "Negative")
+        positive_count = len(data['Sentiment'] == "Positive")
+        negative_count = len(data['Sentiment'] == "Negative")
         
         st.write("### Summary:")
         st.write(f"Total texts analyzed: {len(data)}")
