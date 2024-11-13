@@ -121,7 +121,7 @@ def clean_text(text):
 
 # File upload for batch sentiment analysis
 st.write("                                                                                     ")
-uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis", type=["csv"])
+uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis")
 st.write("Data must have a text column with name is 'text' ")
 
 if uploaded_file:
