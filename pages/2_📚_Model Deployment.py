@@ -117,64 +117,6 @@ def clean_text(text):
     return ' '.join(tokens)
 
 ########################################################################################################
-
-#user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
-with st.container():
-    st.markdown("""
-    <style>
-        .stTextArea textarea {
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            resize: vertical;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
-    user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
-    
-if st.button("Analyze Sentiment"):
-    if user_input:
-        # Preprocess the text using the vectorizer
-        user_input = clean_text(user_input)
-        X_test_tfidf = tfidf_vectorizer.transform([user_input])
-        #user_input=vectorizer.transform([user_input])
-        # Make the prediction and choose model
-       # if choose_model == 'RandomForest':
-        #    prediction = RF_model.predict(X_test_tfidf)
-       # if choose_model == 'XGBoost':
-        #    prediction = XG_model.predict(X_test_tfidf)
-        if choose_model == 'Logistic Regression':
-            prediction = logistic_model.predict(X_test_tfidf)
-        elif choose_model == 'LSTM':
-            # Tokenize and pad the sequence for LSTM (assuming LSTM expects padded sequences)
-            #tokenizer = tf.keras.preprocessing.text.Tokenizer()
-            tokenizer.fit_on_texts([user_input])  # Fit only for this example
-            sequence = tokenizer.texts_to_sequences([user_input])
-            padded_sequence = pad_sequences(sequence, maxlen=150)  # Assuming maxlen=100
-
-            prediction = lstm_model.predict(padded_sequence)
-            prediction = (prediction > 0.5).astype("int32")  # Convert probabilities to class labels
-
-
-        # Debugging: Print the prediction to see the output format
-    st.write(f"Raw prediction output: {prediction}") 
-
-
-    	# Convert prediction to sentiment labels
-    if choose_model == 'LSTM':
-        	# For LSTM, we handle binary class prediction
-        sentiment = "Positive" if prediction[0][0] == 1 else "Negative"
-    else:
-        # For non-LSTM models, prediction is typically a single value array (e.g., [1] or [0])
-        sentiment = "Positive" if prediction[0] == 1 else "Negative"
-
-    if sentiment == "Positive":
-        st.success(f"Prediction: {sentiment} ✔️")
-    else:
-        st.error(f"Prediction: {sentiment} ❌")
-
 ###################################Batch Sentiment Analysis#####################################################        
 
 # File upload for batch sentiment analysis
@@ -237,5 +179,64 @@ if uploaded_file:
 
 # Footer or final notes
 #st.write("App built with Streamlit.")
+
+########################################################################################################
+#user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
+with st.container():
+    st.markdown("""
+    <style>
+        .stTextArea textarea {
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
+    
+if st.button("Analyze Sentiment"):
+    if user_input:
+        # Preprocess the text using the vectorizer
+        user_input = clean_text(user_input)
+        X_test_tfidf = tfidf_vectorizer.transform([user_input])
+        #user_input=vectorizer.transform([user_input])
+        # Make the prediction and choose model
+       # if choose_model == 'RandomForest':
+        #    prediction = RF_model.predict(X_test_tfidf)
+       # if choose_model == 'XGBoost':
+        #    prediction = XG_model.predict(X_test_tfidf)
+        if choose_model == 'Logistic Regression':
+            prediction = logistic_model.predict(X_test_tfidf)
+        elif choose_model == 'LSTM':
+            # Tokenize and pad the sequence for LSTM (assuming LSTM expects padded sequences)
+            #tokenizer = tf.keras.preprocessing.text.Tokenizer()
+            tokenizer.fit_on_texts([user_input])  # Fit only for this example
+            sequence = tokenizer.texts_to_sequences([user_input])
+            padded_sequence = pad_sequences(sequence, maxlen=150)  # Assuming maxlen=100
+
+            prediction = lstm_model.predict(padded_sequence)
+            prediction = (prediction > 0.5).astype("int32")  # Convert probabilities to class labels
+
+
+        # Debugging: Print the prediction to see the output format
+    st.write(f"Raw prediction output: {prediction}") 
+
+
+    	# Convert prediction to sentiment labels
+    if choose_model == 'LSTM':
+        	# For LSTM, we handle binary class prediction
+        sentiment = "Positive" if prediction[0][0] == 1 else "Negative"
+    else:
+        # For non-LSTM models, prediction is typically a single value array (e.g., [1] or [0])
+        sentiment = "Positive" if prediction[0] == 1 else "Negative"
+
+    if sentiment == "Positive":
+        st.success(f"Prediction: {sentiment} ✔️")
+    else:
+        st.error(f"Prediction: {sentiment} ❌")
+
 
             
