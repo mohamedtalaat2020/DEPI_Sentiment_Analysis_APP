@@ -136,7 +136,7 @@ if uploaded_file:
         
         # Make predictions 
         # Transform the text using the TF-IDF vectorizer
-        data['text'] = data['text'].apply(lambda x: clean_text(x))
+        data['text'] = data['text'].astype(str).apply(lambda x: clean_text(x))
         text_data_tfidf = tfidf_vectorizer.transform(data['text'])
 
         # Predict sentiments for the text data
