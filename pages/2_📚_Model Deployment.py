@@ -152,11 +152,13 @@ if uploaded_file:
             predictions = (predictions > 0.5).astype("int32")
 
         # Add predictions to the DataFrame
+        data['Sentiment'] = predictions 
+        
+        # Add predictions to the DataFrame
         sentiment_mapping = {
                             0: "Negative",
                             1: "Positive"
                         }
-
         data['Sentiment'] = data['Sentiment'].astype(str).map(sentiment_mapping)
 
         st.write("### Sentiment Analysis Results:")
