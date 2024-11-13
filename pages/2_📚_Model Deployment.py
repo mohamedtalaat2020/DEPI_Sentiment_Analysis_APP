@@ -178,6 +178,7 @@ if st.button("Analyze Sentiment"):
 ###################################Batch Sentiment Analysis#####################################################        
 
 # File upload for batch sentiment analysis
+st.write("                                                                                     ")
 uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis", type=["csv"])
 st.write("Data must have a text column with name is 'text' ")
 
