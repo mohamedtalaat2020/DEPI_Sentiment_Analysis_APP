@@ -76,7 +76,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'streamlitappdepi'
+          app-name: 'DepiSentimentAnalysis'
           slot-name: 'Production'
           package: 'release.zip'
 
