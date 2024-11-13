@@ -67,12 +67,15 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E6F8C5EB4AAE4EECAA81F1610593F998 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A1102241708F494DB297359209A9B6E5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C7AAB13CF71F47EB9AAD65285A0D6416 }}
-
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+      
+      - name: Set Azure Subscription
+        run: az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'Depistreamlitapp'
-          slot-name: 'Production'
+          app-name: 'streamlitappdepi'
+          package: 'release.zip'
           
