@@ -126,7 +126,7 @@ st.write("Data must have a text column with name is 'text' ")
 
 if uploaded_file:
     # Read the file into a DataFrame
-    data = pd.read_csv(uploaded_file, encoding='utf-8')    #, encoding='ISO-8859-1'
+    data = pd.read_csv(uploaded_file, encoding='latin-1')    #, encoding='ISO-8859-1'
     # Expected column names
     expected_columns = ['text']
     
