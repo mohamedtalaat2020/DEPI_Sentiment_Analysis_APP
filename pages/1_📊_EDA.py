@@ -111,8 +111,6 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
     st.sidebar.write(df['quarter'][0])
     st.sidebar.write(df['Date'][0])
 
-    
-
 
 # Create a container div for the metrics
 # Development Metrics Section
