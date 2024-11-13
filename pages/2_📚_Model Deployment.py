@@ -154,20 +154,20 @@ if uploaded_file:
         # Add predictions to the DataFrame
         data['Sentiment'] = predictions 
         
-        # Add predictions to the DataFrame
+            # Add predictions to the DataFrame
         sentiment_mapping = {
-                            0: "Negative",
-                            1: "Positive"
-                        }
+            0: "Negative",
+            1: "Positive"
+        }
         data['Sentiment'] = data['Sentiment'].map(sentiment_mapping)
 
         st.write("### Sentiment Analysis Results:")
         st.write(data[['text','clean_text','Sentiment']])
 
         # Summary Section
-        positive_count = len(data['Sentiment'] == "Positive")
-        negative_count = len(data['Sentiment'] == "Negative")
-        
+        positive_count = data['Sentiment'].value_counts()['Positive']
+        negative_count = data['Sentiment'].value_counts()['Negative']
+
         st.write("### Summary:")
         st.write(f"Total texts analyzed: {len(data)}")
         st.write(f"Positive: {positive_count}")
