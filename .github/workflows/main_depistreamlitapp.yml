@@ -67,14 +67,12 @@ jobs:
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E6F8C5EB4AAE4EECAA81F1610593F998 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A1102241708F494DB297359209A9B6E5 }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_63AB09B3B6C341448227ADC6F48BADB5 }}
       
-      - name: Set Azure Subscription
-        run: az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
+        id: deploy-to-azurewebapp
         with:
           app-name: 'DepiSentimentAnalysis'
           package: 'release.zip'
