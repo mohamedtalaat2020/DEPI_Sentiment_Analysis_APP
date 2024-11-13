@@ -124,7 +124,7 @@ batch_analysis_header = """
                 margin-top: 20px; 
                 margin-bottom: 20px;">
         <h2 style="color: black; font-size: 30px; margin: 0;">
-            Batch Sentiment Analysis Section
+            Batch Sentiment Analysis Section 📁
         </h2>
     </div>
 """
@@ -199,7 +199,17 @@ if uploaded_file:
 #st.write("App built with Streamlit.")
 st.write("__________________________________________________________________________________________")
 ########################################################################################################
-st.write("### Real-time Sentiment Analysis Section")
+# Centered, styled header for "Real-time Sentiment Analysis Section" with black text and an emoji
+realtime_analysis_header = """
+    <div style="text-align: center; 
+                margin-top: 20px; 
+                margin-bottom: 20px;">
+        <h2 style="color: black; font-size: 30px; margin: 0;">
+             Real-time Sentiment Analysis Section ⚡
+        </h2>
+    </div>
+"""
+st.markdown(realtime_analysis_header, unsafe_allow_html=True)
 
 #user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
 with st.container():
