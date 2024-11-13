@@ -52,7 +52,7 @@ li {
 
 
 st.sidebar.header("About App")
-st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of different domains. The reviews will then be used to determine the Sentiments of those reviews. \
+st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
                 The different Visualizations will help us get a feel of the overall exploration of reviews")
 st.sidebar.text("Built with Streamlit")
 
