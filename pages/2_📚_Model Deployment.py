@@ -118,7 +118,7 @@ def clean_text(text):
 
 ########################################################################################################
 ###################################Batch Sentiment Analysis#####################################################        
-
+st.write("### Batch Sentiment Analysis Section")
 # File upload for batch sentiment analysis
 st.write("                                                                                     ")
 uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis")
@@ -186,8 +186,10 @@ if uploaded_file:
 
 # Footer or final notes
 #st.write("App built with Streamlit.")
-
+st.write("__________________________________________________________________________________________")
 ########################################################################################################
+st.write("### Real-time Sentiment Analysis Section")
+
 #user_input = st.text_area("Enter text for sentiment analysis:", placeholder="Type sentiment here...")
 with st.container():
     st.markdown("""
