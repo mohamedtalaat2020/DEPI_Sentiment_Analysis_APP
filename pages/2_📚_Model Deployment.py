@@ -118,19 +118,14 @@ def clean_text(text):
 
 ########################################################################################################
 ###################################Batch Sentiment Analysis#####################################################        
-# Centered, styled header for "Batch Sentiment Analysis Section" with updated colors
+# Centered, styled header for "Batch Sentiment Analysis Section" with black text and no background
 batch_analysis_header = """
-    <div style="background-color: rgba(0, 0, 0, 0.7); 
-                padding: 15px; 
-                border-radius: 10px; 
-                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8); 
-                text-align: center; 
+    <div style="text-align: center; 
                 margin-top: 20px; 
                 margin-bottom: 20px;">
-        <h3 style="color: white; font-size: 30px; margin: 0; 
-                   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
+        <h2 style="color: black; font-size: 30px; margin: 0;">
             Batch Sentiment Analysis Section
-        </h3>
+        </h2>
     </div>
 """
 st.markdown(batch_analysis_header, unsafe_allow_html=True)
