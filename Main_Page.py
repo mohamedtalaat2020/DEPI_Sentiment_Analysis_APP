@@ -4,6 +4,19 @@ from helper_functions import *
 
 
 st.set_page_config(page_title="Sentiment Analysis", layout="wide")
+html_temp = """
+  <div style="background-color: rgba(0, 0, 0, 0.7); 
+                padding: 30px; 
+                border-radius: 15px; 
+                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+                text-align: center;">
+        <h1 style="color: white; font-size: 40px; margin: 0; 
+                   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
+                   Comprehensive Data Science Toolkit: EDA, Sentiment Analysis, Hyperparameter Tuning & MLflow Tracking
+        </h1>
+    </div>
+"""
+st.markdown(html_temp, unsafe_allow_html=True)
 
 # Title and description
 #st.title("Customer Product Reviews Sentiment Analysis App")
