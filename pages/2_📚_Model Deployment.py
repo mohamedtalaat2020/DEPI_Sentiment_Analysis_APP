@@ -159,7 +159,7 @@ if uploaded_file:
                             0: "Negative",
                             1: "Positive"
                         }
-        data['Sentiment'] = data['Sentiment'].astype(str).map(sentiment_mapping)
+        data['Sentiment'] = data['Sentiment'].map(sentiment_mapping)
 
         st.write("### Sentiment Analysis Results:")
         st.write(data[['text','clean_text','Sentiment']])
