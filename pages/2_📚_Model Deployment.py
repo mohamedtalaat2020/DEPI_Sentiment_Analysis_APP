@@ -175,4 +175,66 @@ if st.button("Analyze Sentiment"):
     else:
         st.error(f"Prediction: {sentiment} ❌")
 
+###################################Batch Sentiment Analysis#####################################################        
+
+# File upload for batch sentiment analysis
+uploaded_file = st.file_uploader("Upload a CSV file for batch sentiment analysis", type=["csv"])
+st.write("Data must have a text column with name is 'text' ")
+
+if uploaded_file:
+    # Read the file into a DataFrame
+    data = pd.read_csv(uploaded_file, encoding='ISO-8859-1')
+    # Expected column names
+    expected_columns = ['text']
+    
+    if set(expected_columns).issubset(data.columns):
+        st.write("The uploaded file has the correct column!")
+        # st.write(data.head())
+        
+        # Make predictions 
+        # Transform the text using the TF-IDF vectorizer
+        data['text'] = data['text'].apply(lambda x: clean_text(x))
+        text_data_tfidf = tfidf_vectorizer.transform(data['text'])
+
+        # Predict sentiments for the text data
+        
+        if choose_model == 'Logistic Regression':
+            predictions = logistic_model.predict(text_data_tfidf)
+        elif choose_model == 'LSTM':
+            tokenizer.fit_on_texts(data['text'])  # Fit only for this example
+            sequence = tokenizer.texts_to_sequences(data['text'])
+            padded_sequence = pad_sequences(sequence, maxlen=150)  # Assuming maxlen=100
+
+            predictions = lstm_model.predict(padded_sequence)
+            predictions = (predictions > 0.5).astype("int32")
+
+        # Add predictions to the DataFrame
+        data['Sentiment'] = predictions 
+        
+        st.write("### Sentiment Analysis Results:")
+        st.write(data[['text', 'Sentiment']])
+
+        # Summary Section
+        positive_count = sum(data['Sentiment'] == "Positive")
+        negative_count = sum(data['Sentiment'] == "Negative")
+        
+        st.write("### Summary:")
+        st.write(f"Total texts analyzed: {len(data)}")
+        st.write(f"Positive: {positive_count}")
+        st.write(f"Negative: {negative_count}")
+    else:
+        st.error(f"The uploaded file doesn't have the correct columns. Expected: {expected_columns}, but got: {data.columns.tolist()}")
+
+# User feedback section
+#st.write("### Feedback")
+# feedback = st.text_input("How accurate was the prediction? (1-5)", placeholder='Rating here...')
+#options = [1, 2, 3, 4, 5]
+#feedback = st.selectbox("How accurate was the prediction? (1-5)", options, index=None)
+
+#if st.button("Submit Feedback"):
+#    st.write("Thank you for your feedback!")
+
+# Footer or final notes
+#st.write("App built with Streamlit.")
+
             
