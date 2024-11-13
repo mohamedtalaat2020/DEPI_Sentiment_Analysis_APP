@@ -161,3 +161,5 @@ with st.form("train_model"):
             ax2.set_title("Precision-Recall Curve")
             ax2.legend(loc="upper right")
             st.pyplot(pr_fig, use_container_width=True)
+
+st.write('you can find experiments here : https://dagshub.com/mohamedtalaat2020/DEPI_Sentiment_Analysis_APP.mlflow')
