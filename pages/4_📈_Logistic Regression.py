@@ -54,7 +54,7 @@ def train_model(C, max_iter, solver, penalty, class_weight, tol):
     return log_reg
 
 # Dashboard
-st.title("Logistic Regression :green[Experiment] ⚖️")
+st.title("Logistic Regression :blue[Experiment] ⚖️")
 st.markdown("Try different values of Logistic Regression classifier. Select widget values and submit model for training. Various ML metrics will be displayed after training.")
 
 with st.form("train_model"):
