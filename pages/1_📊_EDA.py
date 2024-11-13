@@ -113,41 +113,10 @@ elif 'uploaded_data' in st.session_state and 'filename' in st.session_state:
 
     
 
-    ######
-
-
-    #st.markdown("<p style='color: white;'>Total Reviews are: {}</p>".format(len(df)), unsafe_allow_html=True)
-    #st.markdown("<p style='color: white;'>Total Positive Reviews are: {}</p>".format(len(df[df["rating"] == 2])), unsafe_allow_html=True)
-    #st.markdown("<p style='color: white;'>Total Negative Reviews are: {}</p>".format(len(df[df["rating"] == 0])), unsafe_allow_html=True)
-    #st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
-    # Group by quarter and calculate average rating
-   # Count the total number of reviews per day
-    daily_counts = df.groupby('day').size().reset_index(name='total_reviews')
-    # Add title for the chart
-    st.markdown("<h2 style='color:white;'>Total Number of Reviews per Day</h2>", unsafe_allow_html=True)
-    # Display the line chart of total reviews by day
-    st.line_chart(daily_counts.set_index('day'))
-
-    # Group by day and calculate average rating
-    daily_avg = df.groupby('day')['rating'].mean().reset_index()
-    # Display the line chart of average ratings by day
-    st.markdown("<h2 style='color:white;'>Average Ratings per Day - Trend Analysis</h2>", unsafe_allow_html=True)
-    st.line_chart(daily_avg.set_index('day'))
-
-    # Group by day and rating, counting total number of reviews for each rating category per day
-    daily_counts = df.groupby(['day', 'rating']).size().reset_index(name='count')
-    # Pivot the table to have ratings as columns, days as rows
-    daily_counts_pivot = daily_counts.pivot(index='day', columns='rating', values='count').fillna(0)
-
-    # Rename the columns for clearer interpretation
-    daily_counts_pivot.columns = ['Negative', 'Positive']  # Adjust based on actual rating categories
-    # Display the chart for total number of reviews by rating per day
-    st.markdown("<h2 style='color:white;'>Total Number of Reviews by Rating per Day</h2>", unsafe_allow_html=True)
-    st.line_chart(daily_counts_pivot)
 
 # Create a container div for the metrics
 # Development Metrics Section
-st.markdown("<h2 style='color: white; text-align: center;'>Reviews Metrics</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: black; text-align: center;'>Reviews Metrics</h2>", unsafe_allow_html=True)
 
 # Create columns for metrics
 kpi1, kpi2, kpi3= st.columns(3)
@@ -190,6 +159,38 @@ if filename is not None:
             unsafe_allow_html=True
         )
 
+    
+    ######
+
+
+    #st.markdown("<p style='color: white;'>Total Reviews are: {}</p>".format(len(df)), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Positive Reviews are: {}</p>".format(len(df[df["rating"] == 2])), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Negative Reviews are: {}</p>".format(len(df[df["rating"] == 0])), unsafe_allow_html=True)
+    #st.markdown("<p style='color: white;'>Total Neutral Reviews are: {}</p>".format(len(df[df["rating"] == 1])), unsafe_allow_html=True)
+    # Group by quarter and calculate average rating
+   # Count the total number of reviews per day
+    daily_counts = df.groupby('day').size().reset_index(name='total_reviews')
+    # Add title for the chart
+    st.markdown("<h2 style='color:black;'>Total Number of Reviews per Day</h2>", unsafe_allow_html=True)
+    # Display the line chart of total reviews by day
+    st.line_chart(daily_counts.set_index('day'))
+
+    # Group by day and calculate average rating
+    daily_avg = df.groupby('day')['rating'].mean().reset_index()
+    # Display the line chart of average ratings by day
+    st.markdown("<h2 style='color:black;'>Average Ratings per Day - Trend Analysis</h2>", unsafe_allow_html=True)
+    st.line_chart(daily_avg.set_index('day'))
+
+    # Group by day and rating, counting total number of reviews for each rating category per day
+    daily_counts = df.groupby(['day', 'rating']).size().reset_index(name='count')
+    # Pivot the table to have ratings as columns, days as rows
+    daily_counts_pivot = daily_counts.pivot(index='day', columns='rating', values='count').fillna(0)
+
+    # Rename the columns for clearer interpretation
+    daily_counts_pivot.columns = ['Negative', 'Positive']  # Adjust based on actual rating categories
+    # Display the chart for total number of reviews by rating per day
+    st.markdown("<h2 style='color:black;'>Total Number of Reviews by Rating per Day</h2>", unsafe_allow_html=True)
+    st.line_chart(daily_counts_pivot)
   
 
 
