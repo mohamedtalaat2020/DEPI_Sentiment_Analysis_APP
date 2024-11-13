@@ -9,16 +9,6 @@ from joblib import dump, load
 import matplotlib.pyplot as plt
 
 # App design
-st.markdown("""
-    <div style="background-color: rgba(0, 0, 0, 0.7); 
-                padding: 30px; 
-                border-radius: 15px; 
-                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
-                text-align: center;">
-        <h1 style="color: white; font-size: 50px; margin: 0; 
-                   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">Model Hyperparameter Tuning 🛠️</h1>
-    </div>	
-""", unsafe_allow_html=True)
 
 # Load and preprocess data
 categories = ['positive', 'negative']
