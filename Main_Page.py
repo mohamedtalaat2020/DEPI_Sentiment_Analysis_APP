@@ -10,13 +10,14 @@ html_temp = """
                 border-radius: 15px; 
                 box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
                 text-align: center;">
-        <h1 style="color: white; font-size: 40px; margin: 0; 
+        <h1 style="color: white; font-size: 30px; margin: 0; 
                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
-                   Comprehensive ML & DL Toolkit
+                   Comprehensive Data Science Toolkit for Sentiment Analysis Tasks
         </h1>
     </div>
 """
 st.markdown(html_temp, unsafe_allow_html=True)
+
 
 # Title and description
 #st.title("Customer Product Reviews Sentiment Analysis App")
