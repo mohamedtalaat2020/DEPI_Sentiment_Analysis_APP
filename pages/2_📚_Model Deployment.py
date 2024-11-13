@@ -118,16 +118,16 @@ def clean_text(text):
 
 ########################################################################################################
 ###################################Batch Sentiment Analysis#####################################################        
-# Centered, styled header for "Batch Sentiment Analysis Section"
+# Centered, styled header for "Batch Sentiment Analysis Section" with updated colors
 batch_analysis_header = """
     <div style="background-color: rgba(0, 0, 0, 0.7); 
-                padding: 30px; 
-                border-radius: 15px; 
-                box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8); 
+                padding: 15px; 
+                border-radius: 10px; 
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8); 
                 text-align: center; 
                 margin-top: 20px; 
                 margin-bottom: 20px;">
-        <h2 style="color: white; font-size: 40px; margin: 0; 
+        <h2 style="color: white; font-size: 30px; margin: 0; 
                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
             Batch Sentiment Analysis Section
         </h2>
