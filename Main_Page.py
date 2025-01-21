@@ -24,14 +24,16 @@ st.markdown(html_temp, unsafe_allow_html=True)
 # app design
 set_bg_hack('Picture1.png')
 
-# Create a container for the image
-with st.container():
-    # Add the image inside the container with specified width and height
-    st.image(
-        "Home.png",  # Replace with the path to your image
-        caption="Home Page",
-        use_container_width=False  # Set to False to use custom width and height
-    )
+# Add an image using st.markdown with HTML
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <img src="Home.png" alt="Home Page" width="500" height="300">
+        <p>Home Page</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 st.sidebar.header("About App")
