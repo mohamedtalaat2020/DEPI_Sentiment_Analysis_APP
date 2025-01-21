@@ -28,7 +28,7 @@ set_bg_hack('Picture1.png')
 st.image(
     "Home.png",  # Replace with the path to your image
     caption="Home Page",
-    use_column_width=True  # Automatically adjusts the image width to the column size
+    use_container_width=True  # Automatically adjusts the image width to the container size
 )
 
 st.sidebar.header("About App")
