@@ -23,48 +23,6 @@ st.markdown(html_temp, unsafe_allow_html=True)
 #st.title("Customer Product Reviews Sentiment Analysis App")
 # app design
 set_bg_hack('Picture1.png')
-'''
-st.write("## Team Members 🧑‍💻")
-
-st.markdown("""
-<style>
-.team-members {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-h2 {
-  color: #333;
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  margin-bottom: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
-}
-</style>
-
-<div class="team-members">
-  <ul>
-    <li>Mohamed Talaat Abo Elftouh</li>
-    <li>Mohamed Mostafa Abdelhamed</li>
-    <li>Moaz Mohamed Tawfik</li>
-    <li>Amr Khaled Mostafa</li>
-    <li>Mahmoud Mohammed Abdelmawgoud</li>
-    <li>Mohamed Alaa Elsayad</li>
-  </ul>
-</div>
-""", unsafe_allow_html=True)
-'''
 
 st.sidebar.header("About App")
 st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
