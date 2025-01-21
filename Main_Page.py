@@ -30,9 +30,7 @@ with st.container():
     st.image(
         "Home.png",  # Replace with the path to your image
         caption="Home Page",
-        use_container_width=False,  # Set to False to use custom width and height
-        width=500,  # Set the desired width
-        height=300  # Set the desired height
+        use_container_width=False  # Set to False to use custom width and height
     )
 
 
