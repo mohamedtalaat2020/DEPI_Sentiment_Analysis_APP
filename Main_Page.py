@@ -20,9 +20,9 @@ st.markdown(html_temp, unsafe_allow_html=True)
 
 welcome_message = """
     <div style="text-align: center; margin-top: 20px;">
-        <h6 style="color: #000000; font-size: 28px; 
+        <h6 style="color: #000000; font-size: 20px; 
                    font-family: 'Arial', sans-serif; 
-                   text-shadow: 1px 1px 5px rgba(0.1, 0.1, 0.1, 0.2); 
+                   text-shadow: 1px 1px 5px rgba(0.1, 0.1, 0.1, 0.6); 
                    padding: 10px;">
                    Explore our features and enjoy your experience!
         </h6>
@@ -46,10 +46,11 @@ with st.container():
     )
 
 
-st.sidebar.header("About App")
-st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
-                The different Visualizations will help us get a feel of the overall exploration of reviews")
-st.sidebar.text("Built with Streamlit")
+st.sidebar.header("About Application")
+st.sidebar.info("A Customer Sentiment analysis App which collect reviews any area . \
+                The different Visualizations will help us to get overall exploration of reviews.\
+                then determine the Sentiments of those reviews")
+#st.sidebar.text("Built with Streamlit")
 
 st.sidebar.header("For Any Queries/Suggestions Please reach out at :")
 st.sidebar.info("medotalaat20177@gmail.com")
