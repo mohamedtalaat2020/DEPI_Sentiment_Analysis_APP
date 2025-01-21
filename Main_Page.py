@@ -20,12 +20,12 @@ st.markdown(html_temp, unsafe_allow_html=True)
 
 welcome_message = """
     <div style="text-align: center; margin-top: 20px;">
-        <h3 style="color: #000000; font-size: 28px; 
+        <h6 style="color: #000000; font-size: 28px; 
                    font-family: 'Arial', sans-serif; 
                    text-shadow: 1px 1px 5px rgba(0.1, 0.1, 0.1, 0.2); 
                    padding: 10px;">
-                   We're excited to have you here. Explore our features and enjoy your experience!
-        </h3>
+                   Explore our features and enjoy your experience!
+        </h6>
     </div>
 """
 st.markdown(welcome_message, unsafe_allow_html=True)
