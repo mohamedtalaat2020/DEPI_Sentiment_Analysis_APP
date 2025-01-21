@@ -23,6 +23,7 @@ st.markdown(html_temp, unsafe_allow_html=True)
 #st.title("Customer Product Reviews Sentiment Analysis App")
 # app design
 set_bg_hack('Picture1.png')
+'''
 st.write("## Team Members 🧑‍💻")
 
 st.markdown("""
@@ -63,7 +64,7 @@ li {
   </ul>
 </div>
 """, unsafe_allow_html=True)
-
+'''
 
 st.sidebar.header("About App")
 st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
