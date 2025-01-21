@@ -1,9 +1,10 @@
 import streamlit as st
 from helper_functions import *  
 
-
-
+# Set page configuration
 st.set_page_config(page_title="Sentiment Analysis", layout="wide")
+
+# HTML and CSS for the hover effect and main content
 html_temp = """
 <style>
 .hover-div:hover {
@@ -24,24 +25,31 @@ html_temp = """
 """
 st.markdown(html_temp, unsafe_allow_html=True)
 
-
-# Title and description
-#st.title("Customer Product Reviews Sentiment Analysis App")
-# app design
+# Set background image
 set_bg_hack('Picture1.png')
 
-# Add an image with a styled caption using st.markdown with HTML and CSS
+# Add an image with a styled caption
 st.image(
-        "Home.png",  # Replace with the path to your image
-        caption="Home Page",
-        use_container_width=True  # Automatically adjusts the image width to the container size
-    )
+    "Home.png",  # Replace with the path to your image
+    caption="Home Page",
+    use_container_width=True  # Automatically adjusts the image width to the container size
+)
 
-
+# Sidebar content
 st.sidebar.header("About App")
-st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
-                The different Visualizations will help us get a feel of the overall exploration of reviews")
+st.sidebar.info("""
+A Customer Sentiment analysis Project which collects data of reviews of Amazon products. 
+The reviews will then be used to determine the Sentiments of those reviews. 
+The different Visualizations will help us get a feel of the overall exploration of reviews.
+""")
 st.sidebar.text("Built with Streamlit")
 
-st.sidebar.header("For Any Queries/Suggestions Please reach out at :")
+st.sidebar.header("For Any Queries/Suggestions Please reach out at:")
 st.sidebar.info("medotalaat20177@gmail.com")
+
+# Main content
+st.title("Customer Product Reviews Sentiment Analysis App")
+st.write("""
+Welcome to the Customer Product Reviews Sentiment Analysis App! This tool helps you analyze customer reviews from Amazon products to determine their sentiments. 
+Explore various visualizations to gain insights into customer feedback.
+""")
