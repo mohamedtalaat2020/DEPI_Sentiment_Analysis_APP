@@ -39,8 +39,7 @@ welcome_message = """
                    font-family: 'Arial', sans-serif; 
                    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
                    padding: 10px; 
-                   border: 2px solid #4CAF50; 
-                   border-radius: 10px;">
+                   ">
                    Welcome to the Customer Product Reviews Sentiment Analysis App!
         </h3>
     </div>
