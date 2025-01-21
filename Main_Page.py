@@ -28,7 +28,7 @@ set_bg_hack('Picture1.png')
 st.markdown(
     """
     <div style="text-align: center;">
-        <img src="Home.png" alt="Home Page" width="500" height="300">
+        <img src="Home.png" alt="Home Page" width="800" height="500">
         <p>Home Page</p>
     </div>
     """,
