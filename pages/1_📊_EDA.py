@@ -88,7 +88,7 @@ if filename is not None:
     st.session_state['filename'] = filename
 
     # Read and process the file
-    df = pd.read_csv(filename, usecols=['rating', 'clean_text', 'Date'], delimiter=',')
+    df = pd.read_csv(filename, usecols=['Text','rating', 'Date','clean_text' ], delimiter=',')
     df["clean_text"] = df["clean_text"].astype("str")
     df = df[['rating', 'clean_text', 'Date']]
     df['Date'] = pd.to_datetime(df['Date'])
