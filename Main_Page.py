@@ -29,7 +29,6 @@ with st.container():
     st.image(
         "Home.png",  # Replace with the path to your image
         caption="Home Page",
-        height=500,  # Resize the image to a height of 500 pixels
         use_container_width=True  # Automatically adjusts the image width to the container size
     )
 
