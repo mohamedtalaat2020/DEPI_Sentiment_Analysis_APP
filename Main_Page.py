@@ -15,22 +15,10 @@ html_temp = """
                    Comprehensive Data Science Toolkit for Sentiment Analysis Tasks
         </h2>
     </div>
-"""
+""" 
 st.markdown(html_temp, unsafe_allow_html=True)
 
-welcome_message = """
-    <div style="text-align: center; margin-top: 20px;">
-        <h3 style="color: #4CAF50; font-size: 28px; 
-                   font-family: 'Arial', sans-serif; 
-                   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
-                   padding: 10px; 
-                   border: 2px solid #4CAF50; 
-                   border-radius: 10px;">
-                   Welcome to the Customer Product Reviews Sentiment Analysis App!
-        </h3>
-    </div>
-"""
-st.markdown(welcome_message, unsafe_allow_html=True)
+
 
 # Title and description
 #st.title("Customer Product Reviews Sentiment Analysis App")
@@ -45,7 +33,19 @@ with st.container():
         caption="Home Page",
         use_container_width=False,  # Set to False to use custom width and height
     )
-
+welcome_message = """
+    <div style="text-align: center; margin-top: 20px;">
+        <h3 style="color: #4CAF50; font-size: 28px; 
+                   font-family: 'Arial', sans-serif; 
+                   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
+                   padding: 10px; 
+                   border: 2px solid #4CAF50; 
+                   border-radius: 10px;">
+                   Welcome to the Customer Product Reviews Sentiment Analysis App!
+        </h3>
+    </div>
+"""
+st.markdown(welcome_message, unsafe_allow_html=True)
 
 st.sidebar.header("About App")
 st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
