@@ -26,7 +26,7 @@ set_bg_hack('Picture1.png')
 
 # Add an image
 st.image(
-    "Home.png",  # Replace with the path to your image
+    "Home1.png",  # Replace with the path to your image
     caption="Home Page",
     use_container_width=True #,
    # height=400  # Resize the image to a height of 400 pixels (adjust as needed)
