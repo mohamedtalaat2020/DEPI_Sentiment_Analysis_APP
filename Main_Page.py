@@ -48,7 +48,6 @@ st.sidebar.header("For Any Queries/Suggestions Please reach out at:")
 st.sidebar.info("medotalaat20177@gmail.com")
 
 # Main content
-st.title("Customer Product Reviews Sentiment Analysis App")
 st.write("""
 Welcome to the Customer Product Reviews Sentiment Analysis App! This tool helps you analyze customer reviews from Amazon products to determine their sentiments. 
 Explore various visualizations to gain insights into customer feedback.
