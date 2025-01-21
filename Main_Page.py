@@ -24,12 +24,20 @@ st.markdown(html_temp, unsafe_allow_html=True)
 # app design
 set_bg_hack('Picture1.png')
 
-# Add an image using st.markdown with HTML
+# Add an image with a styled caption using st.markdown with HTML and CSS
 st.markdown(
     """
+    <style>
+    .caption {
+        font-size: 18px;
+        color: #555;
+        text-align: center;
+        margin-top: 10px;
+    }
+    </style>
     <div style="text-align: center;">
-        <img src="Home.png" alt="Home Page" width="800" height="500">
-        <p>Home Page</p>
+        <img src="Home.png" alt="Home Page" width="500" height="300">
+        <p class="caption">Home Page</p>
     </div>
     """,
     unsafe_allow_html=True
