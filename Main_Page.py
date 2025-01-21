@@ -5,16 +5,22 @@ from helper_functions import *
 
 st.set_page_config(page_title="Sentiment Analysis", layout="wide")
 html_temp = """
-  <div style="background-color: rgba(0, 0, 0, 0.7); 
+<style>
+.hover-div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.8);
+}
+</style>
+<div class="hover-div" style="background-color: rgba(0, 0, 0, 0.7); 
                 padding: 30px; 
                 border-radius: 15px; 
                 box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
                 text-align: center;">
-        <h2 style="color: white; font-size: 30px; margin: 0; 
-                   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
-                   Comprehensive Data Science Toolkit for Sentiment Analysis Tasks
-        </h2>
-    </div>
+    <h2 style="color: white; font-size: 30px; margin: 0; 
+               text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
+               Comprehensive Data Science Toolkit for Sentiment Analysis Tasks
+    </h2>
+</div>
 """
 st.markdown(html_temp, unsafe_allow_html=True)
 
@@ -25,23 +31,11 @@ st.markdown(html_temp, unsafe_allow_html=True)
 set_bg_hack('Picture1.png')
 
 # Add an image with a styled caption using st.markdown with HTML and CSS
-st.markdown(
-    """
-    <style>
-    .caption {
-        font-size: 18px;
-        color: #555;
-        text-align: center;
-        margin-top: 10px;
-    }
-    </style>
-    <div style="text-align: center;">
-        <img src="Home.png" alt="Home Page" width="500" height="300">
-        <p class="caption">Home Page</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.image(
+        "Home.png",  # Replace with the path to your image
+        caption="Home Page",
+        use_container_width=True  # Automatically adjusts the image width to the container size
+    )
 
 
 st.sidebar.header("About App")
