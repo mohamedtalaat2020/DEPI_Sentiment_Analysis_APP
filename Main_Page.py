@@ -24,13 +24,15 @@ st.markdown(html_temp, unsafe_allow_html=True)
 # app design
 set_bg_hack('Picture1.png')
 
-# Add an image
-st.image(
-    "Home.png",  # Replace with the path to your image
-    caption="Home Page",
-    use_container_width=True #,
-   # height=400  # Resize the image to a height of 400 pixels (adjust as needed)
-)
+with st.container():
+    # Add the image inside the container with a specified height
+    st.image(
+        "Home.png",  # Replace with the path to your image
+        caption="Home Page",
+        height=500,  # Resize the image to a height of 500 pixels
+        use_container_width=True  # Automatically adjusts the image width to the container size
+    )
+
 
 st.sidebar.header("About App")
 st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
