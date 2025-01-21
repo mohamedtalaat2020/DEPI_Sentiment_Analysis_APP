@@ -7,8 +7,8 @@ st.set_page_config(page_title="Sentiment Analysis", layout="wide")
 html_temp = """
 <style>
 .hover-div:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 50px rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 255, 0.1);
+    box-shadow: 0 10px 50px rgba(255, 0, 255, 0.8);
 }
 </style>
 <div class="hover-div" style="background-color: rgba(0, 0, 0, 0.7); 
