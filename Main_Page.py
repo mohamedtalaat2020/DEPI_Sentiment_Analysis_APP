@@ -1,8 +1,9 @@
 import streamlit as st
 from helper_functions import *  
 
-st.set_page_config(page_title="Sentiment Analysis", layout="wide")
 
+
+st.set_page_config(page_title="Sentiment Analysis", layout="wide")
 html_temp = """
   <div style="background-color: rgba(0, 0, 0, 0.7); 
                 padding: 30px; 
@@ -13,13 +14,23 @@ html_temp = """
                    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);">
                    Comprehensive Data Science Toolkit for Sentiment Analysis Tasks
         </h2>
-        <h3 style="color: white; font-size: 24px; margin-top: 20px; 
-                   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);">
+    </div>
+"""
+st.markdown(html_temp, unsafe_allow_html=True)
+
+welcome_message = """
+    <div style="text-align: center; margin-top: 20px;">
+        <h3 style="color: #4CAF50; font-size: 28px; 
+                   font-family: 'Arial', sans-serif; 
+                   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
+                   padding: 10px; 
+                   border: 2px solid #4CAF50; 
+                   border-radius: 10px;">
                    Welcome to the Customer Product Reviews Sentiment Analysis App!
         </h3>
     </div>
 """
-st.markdown(html_temp, unsafe_allow_html=True)
+st.markdown(welcome_message, unsafe_allow_html=True)
 
 # Title and description
 #st.title("Customer Product Reviews Sentiment Analysis App")
@@ -32,8 +43,9 @@ with st.container():
     st.image(
         "Home.png",  # Replace with the path to your image
         caption="Home Page",
-        use_container_width=False  # Set to False to use custom width and height
+        use_container_width=False,  # Set to False to use custom width and height
     )
+
 
 st.sidebar.header("About App")
 st.sidebar.info("A Customer Sentiment analysis Project which collect data of reviews of Amazon products. The reviews will then be used to determine the Sentiments of those reviews. \
