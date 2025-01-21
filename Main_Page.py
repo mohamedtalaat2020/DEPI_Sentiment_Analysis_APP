@@ -35,7 +35,7 @@ with st.container():
     )
 welcome_message = """
     <div style="text-align: center; margin-top: 20px;">
-        <h3 style="color: #4CAF50; font-size: 28px; 
+        <h3 style="color: #000000; font-size: 28px; 
                    font-family: 'Arial', sans-serif; 
                    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
                    padding: 10px; 
