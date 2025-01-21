@@ -24,12 +24,15 @@ st.markdown(html_temp, unsafe_allow_html=True)
 # app design
 set_bg_hack('Picture1.png')
 
+# Create a container for the image
 with st.container():
-    # Add the image inside the container with a specified height
+    # Add the image inside the container with specified width and height
     st.image(
         "Home.png",  # Replace with the path to your image
         caption="Home Page",
-        use_container_width=True  # Automatically adjusts the image width to the container size
+        use_container_width=False,  # Set to False to use custom width and height
+        width=500,  # Set the desired width
+        height=300  # Set the desired height
     )
 
 
